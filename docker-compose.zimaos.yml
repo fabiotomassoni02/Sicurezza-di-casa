@@ -1,0 +1,39 @@
+# Sicurezza di casa, per ZimaOS.
+# Un solo container: l'app con Tailscale già dentro, raggiungibile SOLO dal tailnet (Funnel spento)
+# e solo dal tuo account Tailscale. Sostituisci i valori segnati con <<< e incolla tutto in
+# App Store → "+" → Importa (Docker Compose).
+
+name: sicurezza-casa
+services:
+  sicurezza-casa:
+    image: ghcr.io/fabiotomassoni02/sicurezza-casa:1.0
+    container_name: sicurezza-casa
+    environment:
+      TZ: Europe/Rome
+      TS_AUTHKEY: ""                         # <<< chiave Tailscale monouso con tag:sicurezza (README, sezione 2): serve solo al primo avvio
+      TS_HOSTNAME: sicurezza                 # l'indirizzo sarà https://sicurezza.<tailnet>.ts.net
+      TS_FUNNEL: "false"                     # NON cambiare: questa pagina deve restare solo nel tailnet
+      TS_PROPRIETARIO: "tuo-account@gmail.com"   # <<< il tuo account Tailscale: solo lui vede la pagina
+      CONTROLLO_ORA: "6"                     # ora del controllo automatico di ogni mattina
+    volumes:
+      - /DATA/AppData/sicurezza-casa/data:/data
+      # il file di stato che Claude aggiorna alla fine di ogni lavoro (sola lettura per l'app)
+      - /DATA/AppData/claude-code/workspace/sicurezza-stato:/stato:ro
+    restart: unless-stopped
+
+x-casaos:
+  main: sicurezza-casa
+  architectures:
+    - amd64
+  author: Fabio
+  developer: Fabio
+  category: Utilities
+  title:
+    en_us: Sicurezza di casa
+    it_it: Sicurezza di casa
+  tagline:
+    en_us: Lo stato della sicurezza della rete, a colpo d'occhio
+    it_it: Lo stato della sicurezza della rete, a colpo d'occhio
+  description:
+    en_us: Rischi, accessi, backup, aggiornamenti e controlli automatici di cosa si vede da internet. Solo dal tailnet.
+    it_it: Rischi, accessi, backup, aggiornamenti e controlli automatici di cosa si vede da internet. Solo dal tailnet.

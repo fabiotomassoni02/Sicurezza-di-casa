@@ -1,0 +1,12 @@
+{
+  "name": "sicurezza-casa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lo stato della sicurezza della rete e del sistema, a colpo d'occhio, solo dal tailnet",
+  "main": "server.js",
+  "scripts": { "start": "node --disable-warning=ExperimentalWarning server.js" },
+  "engines": { "node": ">=22.13" },
+  "dependencies": {
+    "express": "5.3.0"
+  }
+}

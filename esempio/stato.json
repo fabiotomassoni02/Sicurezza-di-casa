@@ -1,0 +1,46 @@
+{
+  "versione": 1,
+  "aggiornatoDaClaude": "2026-11-21T10:30:00+01:00",
+  "daFare": [
+    { "testo": "Fare il primo backup fuori casa", "entro": "entro 2–3 settimane", "livello": "critico" },
+    { "testo": "Password lunghe per gli account delle foto", "entro": "questa settimana", "livello": "attenzione" }
+  ],
+  "controlli": {
+    "indirizzi": [
+      { "nome": "file.esempio.it", "app": "Scambio file", "chiuso": "/api/links" },
+      { "nome": "foto.esempio.it", "app": "Foto", "chiuso": "/api/albums", "livello": "attenzione", "nota": "protetta solo dalla password" }
+    ],
+    "vps": {
+      "indirizzo": "203.0.113.10",
+      "aperte": [ { "porta": 80, "cosa": "pagine web" }, { "porta": 443, "cosa": "pagine web cifrate" } ],
+      "chiuse": [ { "porta": 22, "cosa": "accesso SSH" }, { "porta": 8080, "cosa": "interna" } ]
+    }
+  },
+  "rete": {
+    "internet": { "titolo": "Internet", "stato": "info", "righe": ["Da qui arriva chiunque."] },
+    "vps": { "titolo": "VPS · porta d'ingresso", "stato": "ok", "righe": ["Smista le richieste verso casa senza aprirle."] },
+    "zimablade": { "titolo": "Server di casa", "stato": "attenzione", "righe": ["Qui stanno tutte le app e i dati."] },
+    "dispositivi": { "titolo": "I tuoi dispositivi", "stato": "ok", "righe": ["Mac e telefono nella rete privata."] },
+    "wifi": { "titolo": "Wi-Fi di casa", "stato": "attenzione", "righe": ["Chi è sul Wi-Fi vede il server direttamente."] }
+  },
+  "casa": [
+    { "cosa": "Pannello del sistema", "protezione": "password", "cifrato": false, "stato": "attenzione" },
+    { "cosa": "Time Machine", "protezione": "password", "cifrato": true, "stato": "ok" }
+  ],
+  "accessi": {
+    "chiave": { "nome": "Account principale", "protezione": "passkey", "stato": "ok", "confermato": "21/11",
+      "figli": [ { "nome": "Rete privata", "cosa": "i dispositivi" } ],
+      "controlli": [ { "testo": "Passkey attiva", "stato": "ok" }, { "testo": "Metodi di recupero controllati", "stato": "attenzione" } ] },
+    "altri": [ { "nome": "Fornitore della VPS", "cosa": "la VPS", "protezione": "codice OTP", "stato": "ok", "confermato": "21/11" } ]
+  },
+  "rischi": [
+    { "id": "backup", "titolo": "Nessuna copia fuori casa", "livello": "critico", "stato": "aperto",
+      "perche": "Un guasto grave farebbe perdere i dati.", "oggi": "Copie solo in casa.", "prossimo": "Preparare la copia cifrata", "entro": "2–3 settimane" }
+  ],
+  "backup": [ { "cosa": "Foto", "peso": "200 GB", "casa": "database ogni notte", "fuori": null, "stato": "critico" } ],
+  "versioni": [ { "nome": "Foto", "installata": "3.4.0", "ultima": "3.4.0", "nota": "", "stato": "ok" } ],
+  "scadenze": [ { "data": "2026-12-15", "cosa": "Rinnovo del certificato della posta", "dettaglio": "controllare che si sia rinnovato", "stato": "attenzione" } ],
+  "macchina": [ { "titolo": "Dischi dei dati", "stato": "ok", "valore": "3 su 3", "testo": "Nessun errore.", "quando": "21/11" } ],
+  "diario": [ { "quando": "21/11", "cosa": "Prima versione del sito", "dettaglio": "Solo dal tailnet." } ],
+  "domande": [ { "quando": "21/11", "testo": "Il sistema offre la verifica in due passaggi?", "dove": "Impostazioni" } ]
+}
