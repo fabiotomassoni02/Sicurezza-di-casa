@@ -1,0 +1,12 @@
+.DS_Store
+.git
+.github
+.claude
+data
+per-zimaos
+.env
+app/node_modules
+prove
+esempio
+*.md
+docker-compose*.yml

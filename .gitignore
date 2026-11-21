@@ -1,0 +1,7 @@
+.env
+data/
+app/node_modules/
+prove/node_modules/
+per-zimaos/
+.claude/
+.DS_Store
