@@ -222,3 +222,12 @@ details.rischio .corpo h4 { margin: 0 0 4px; font-size: 11px; text-transform: up
 footer.piede { color: var(--tenue); font-size: 12px; margin-top: 28px; display: flex; gap: 8px; align-items: center; }
 .avviso-stato { background: var(--attenzione-f); border: 1px solid var(--attenzione); border-radius: 12px; padding: 12px 16px; margin-bottom: 16px; }
 .caricamento { color: var(--tenue); padding: 40px 0; text-align: center; }
+/* 1.1: note di Claude separate dal risultato del controllo */
+.nota-claude { display: flex; gap: 6px; align-items: flex-start; margin-top: 6px; font-size: 13px; color: var(--testo-2); }
+.nota-claude svg.ic { width: 14px; height: 14px; margin-top: 3px; color: var(--accento); }
+/* 1.1: etichette dei rischi che non si allungano; sul telefono sotto il titolo */
+details.rischio summary .etichette { align-items: flex-start; align-self: start; }
+@media (max-width: 560px) {
+  details.rischio summary { grid-template-columns: 1fr; }
+  details.rischio summary .etichette { justify-content: flex-start; }
+}

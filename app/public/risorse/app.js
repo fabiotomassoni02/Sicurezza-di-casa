@@ -23,9 +23,9 @@ function costruisci(r) {
       else if (g !== null && g < 10) { s = "critico"; note.push("certificato quasi scaduto"); }
       else if (g !== null && g < 25) { s = peggiore([s, "attenzione"]); note.push("il certificato doveva già rinnovarsi"); }
     }
-    if (i.livello) s = peggiore([s, i.livello]);
-    if (i.nota) note.push(i.nota);
-    return { nome: i.nome, app: i.app || i.nome, risponde: x ? x.risponde : null, chiuso: x ? x.chiuso : null, certGiorni: g, stato: s, nota: note.join(" · ") };
+    // lo stato viene SOLO dal controllo automatico; le note di Claude si mostrano a parte (con la matita)
+    return { nome: i.nome, app: i.app || i.nome, risponde: x ? x.risponde : null, chiuso: x ? x.chiuso : null, certGiorni: g, stato: s,
+             nota: note.join(" · "), notaClaude: i.nota ? String(i.nota) : "" };
   });
   const vps = cfg.vps || {};
   const porteVps = a && a.porte ? a.porte.map(p => ({ porta: String(p.porta), cosa: p.cosa, attesa: p.attesa, trovata: p.trovata, nota: p.nota }))
@@ -187,13 +187,13 @@ PAGINE.esposizione = (sotto = "internet") => {
     return `<span class="metro"><span style="width:${pct}%;background:var(--${s === "ok" ? "ok" : s})"></span></span>${g} giorni`; };
   let corpo = "";
   if (sotto === "internet") corpo = `
-    <p class="introduzione">Ogni indirizzo che si raggiunge da internet. Il sito controlla ogni giorno che risponda, che senza password non mostri dati e quanto manca alla scadenza del certificato.</p>
+    <p class="introduzione">Ogni indirizzo che si raggiunge da internet. Il sito controlla ogni giorno che risponda, che senza password non mostri dati e quanto manca alla scadenza del certificato. Lo stato viene solo da questo controllo; le note con la matita sono promemoria di Claude.</p>
     <div class="riga-pagina">${fonte("auto")}</div>
     <div class="riquadro"><div class="tabella"><table>
       <thead><tr><th>Indirizzo</th><th>App</th><th>Risponde</th><th>Dati chiusi</th><th>Certificato</th><th>Stato</th></tr></thead>
       <tbody>${DATI.internet.map(i => `<tr><td><b>${esc(i.nome)}</b></td><td>${esc(i.app)}</td>
         <td>${i.risponde == null ? stato("info", "—") : i.risponde ? stato("ok", "Sì") : stato("critico", "No")}</td><td>${i.chiuso == null ? stato("info", "—") : i.chiuso ? stato("ok", "Sì") : stato("critico", "No")}</td>
-        <td class="num">${i.certGiorni == null ? '<span class="tenue">—</span>' : metro(i.certGiorni)}</td><td>${stato(i.stato)}${i.nota ? `<div class="tenue">${esc(i.nota)}</div>` : ""}</td></tr>`).join("")}</tbody>
+        <td class="num">${i.certGiorni == null ? '<span class="tenue">—</span>' : metro(i.certGiorni)}</td><td>${stato(i.stato)}${i.nota ? `<div class="tenue">${esc(i.nota)}</div>` : ""}${i.notaClaude ? `<div class="nota-claude">${ic("matita")}<span><b>Nota di Claude:</b> ${esc(i.notaClaude)}</span></div>` : ""}</td></tr>`).join("")}</tbody>
     </table></div></div>`;
   if (sotto === "vps") corpo = `
     <p class="introduzione">Le porte della VPS come le vede internet. Verde vuol dire «come deve essere». Le porte della posta non vengono provate, per non far scattare il blocco automatico sull'indirizzo di casa.</p>

@@ -12,6 +12,16 @@ Il 21/11/2026, dopo il resoconto di sicurezza (`/workspace/sicurezza-sistema-202
 - Provata il 21/11 in locale con il file di stato vero e un **controllo vero**: 5 indirizzi rispondono e tengono chiusi i dati (403/401), certificati validi (36–88 giorni), VPS con solo 80/443/3478 aperte e 7 porte interne chiuse: «Tutto come deve essere». Schermate controllate (computer, telefono, scuro).
 - File di stato vero: `/workspace/sicurezza-stato/stato.json` (fuori da git).
 
+## In produzione
+
+- **1.0** (PR #2, unita il 21/11) installata da Fabio in ZimaOS, solo nel tailnet (`tag:sicurezza`). Verificato sull'app vera: da internet il nome non si trova (Funnel spento), pulsante protetto, controllo dell'app installata «Tutto come deve essere», schermate giuste.
+- Un limite che non dipende dall'app è annotato nel file di stato (sezione rischi) e nelle note locali di Claude: non riportarlo qui.
+
+## 1.1 (ramo `note-di-claude`)
+
+- Fabio (21/11) ha chiesto perché Immich era «Da guardare» con il controllo tutto a posto: era il `livello` messo da Claude nel file di stato. Sua scelta: **separare le note di Claude**. Ora lo stato di un indirizzo viene solo dal controllo automatico, e la nota compare a parte con la matita («Nota di Claude: …»). Il giallo su Immich è stato tolto subito dal file di stato.
+- Corrette le etichette dei rischi sul telefono (si allungavano in ovali alti; ora stanno sotto il titolo).
+
 ## Da fare
 
 - [x] Fabio ha creato il repository privato `fabiotomassoni02/sicurezza-di-casa` e l'ha aggiunto al token fine-grained (21/11; il token scade il 26/12/2026).
