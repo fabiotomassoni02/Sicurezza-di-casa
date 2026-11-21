@@ -14,7 +14,7 @@ Il 21/11/2026, dopo il resoconto di sicurezza (`/workspace/sicurezza-sistema-202
 
 ## Da fare
 
-- [ ] Fabio crea il repository privato `fabiotomassoni02/sicurezza-casa` e lo aggiunge al token fine-grained.
+- [x] Fabio ha creato il repository privato `fabiotomassoni02/sicurezza-di-casa` e l'ha aggiunto al token fine-grained (21/11; il token scade il 26/12/2026).
 - [ ] Push del ramo e pull request (Fabio la unisce) → immagine `:1.0`; Fabio rende pubblico il pacchetto su ghcr (come per le altre app).
 - [ ] Tailscale: `tag:sicurezza` in `tagOwners`, chiave monouso con quel tag.
 - [ ] Import in ZimaOS (compose con `TS_PROPRIETARIO` vero), prova dal Mac e dal telefono.

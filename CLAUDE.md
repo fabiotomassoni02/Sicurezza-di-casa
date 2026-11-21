@@ -36,4 +36,4 @@ Prova a mano con i dati veri: avvia `app/server.js` con `PORT`, `DATA_DIR` (cart
 
 ## Come si pubblica
 
-Come VideoRiunioni: numero nel file `VERSIONE` (1.0, 1.1…), +0.1 per le modifiche normali, +1 per quelle grandi, da aumentare in ogni pull request. L'Action pubblica `ghcr.io/fabiotomassoni02/sicurezza-casa:X.Y` e `:latest` dopo il merge; Fabio mette il numero in ZimaOS.
+Come VideoRiunioni: numero nel file `VERSIONE` (1.0, 1.1…), +0.1 per le modifiche normali, +1 per quelle grandi, da aumentare in ogni pull request. L'Action pubblica `ghcr.io/fabiotomassoni02/sicurezza-di-casa:X.Y` e `:latest` dopo il merge; Fabio mette il numero in ZimaOS. Repository: `fabiotomassoni02/sicurezza-di-casa` (privato); la cartella sul server si chiama `/workspace/sicurezza-casa` e il container `sicurezza-casa`.

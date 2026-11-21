@@ -26,7 +26,7 @@ Le porte della posta (25, 465, 587, 993…) **non vengono mai provate**: il serv
 
 ## 3. Aggiornare
 
-Ogni nuova versione ha un numero (1.0, 1.1…): nelle impostazioni dell'app in ZimaOS cambia il numero dopo `sicurezza-casa:` e salva.
+Ogni nuova versione ha un numero (1.0, 1.1…): nelle impostazioni dell'app in ZimaOS cambia il numero dopo `sicurezza-di-casa:` e salva.
 
 ## 4. Se qualcosa non va
 

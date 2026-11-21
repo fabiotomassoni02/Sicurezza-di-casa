@@ -21,7 +21,7 @@ jobs:
 
       - name: Nome dell'immagine
         run: |
-          echo "IMG=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/sicurezza-casa" >> "$GITHUB_ENV"
+          echo "IMG=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/sicurezza-di-casa" >> "$GITHUB_ENV"
           echo "BUILT=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
 
       # Il numero di versione è nel file VERSIONE (per esempio 1.0): si aumenta a ogni pull request,
@@ -32,10 +32,10 @@ jobs:
           VER="$(tr -d ' \r\n' < VERSIONE)"
           echo "$VER" | grep -Eq '^[0-9]+\.[0-9]+$' || { echo "::error::Il file VERSIONE deve contenere un numero come 1.0 (trovato: '$VER')"; exit 1; }
           echo "VER=$VER" >> "$GITHUB_ENV"
-          TOKEN="$(curl -fsS "https://ghcr.io/token?scope=repository:${GITHUB_REPOSITORY_OWNER,,}/sicurezza-casa:pull" | sed -n 's/.*"token":"\([^"]*\)".*/\1/p')"
+          TOKEN="$(curl -fsS "https://ghcr.io/token?scope=repository:${GITHUB_REPOSITORY_OWNER,,}/sicurezza-di-casa:pull" | sed -n 's/.*"token":"\([^"]*\)".*/\1/p')"
           CODICE="$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $TOKEN" \
             -H 'Accept: application/vnd.oci.image.index.v1+json,application/vnd.docker.distribution.manifest.v2+json,application/vnd.docker.distribution.manifest.list.v2+json' \
-            "https://ghcr.io/v2/${GITHUB_REPOSITORY_OWNER,,}/sicurezza-casa/manifests/$VER")"
+            "https://ghcr.io/v2/${GITHUB_REPOSITORY_OWNER,,}/sicurezza-di-casa/manifests/$VER")"
           # 404 = non ancora pubblicata; 401/403 = il pacchetto non esiste ancora (prima pubblicazione)
           if [ "$CODICE" = 404 ] || [ "$CODICE" = 401 ] || [ "$CODICE" = 403 ]; then echo "NUOVA=1" >> "$GITHUB_ENV"; echo "Versione $VER (non ancora pubblicata: va bene)"; exit 0; fi
           [ "$CODICE" = 200 ] || { echo "::error::Non riesco a sapere se la versione $VER esiste già (ghcr.io ha risposto $CODICE): riprova più tardi"; exit 1; }

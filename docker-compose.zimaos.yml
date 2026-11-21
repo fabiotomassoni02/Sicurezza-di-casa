@@ -6,7 +6,7 @@
 name: sicurezza-casa
 services:
   sicurezza-casa:
-    image: ghcr.io/fabiotomassoni02/sicurezza-casa:1.0
+    image: ghcr.io/fabiotomassoni02/sicurezza-di-casa:1.0
     container_name: sicurezza-casa
     environment:
       TZ: Europe/Rome
