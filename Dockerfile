@@ -1,8 +1,8 @@
 # Versioni fissate apposta: cambiano solo quando lo decidiamo (Dependabot propone gli aggiornamenti).
 # Tailscale: da qui prendiamo solo i due programmi (tailscale e tailscaled)
-FROM tailscale/tailscale:v1.104.4 AS tailscale
+FROM tailscale/tailscale:v1.104.7 AS tailscale
 
-FROM node:22.23.4-bookworm-slim
+FROM node:22.23.5-bookworm-slim
 
 # Numero di versione e data, passati da GitHub Actions: l'app li mostra in fondo alla pagina
 ARG VERSIONE=sviluppo
